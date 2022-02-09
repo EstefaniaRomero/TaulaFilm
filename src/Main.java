@@ -1,19 +1,41 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        ArrayFilm [] films = new ArrayFilm[3];
+       /*
+       Exercici 3:
+       Film[] films = new Film[3];
         films[0] = createFilm();
         films [1] = createFilm();
         films [2] = createFilm();
         showPosition(films);
 
+        for (Film film : films)
+        { System.out.println(film);}*/
+
+        int numberFilms = askNumberFilm();
+        List<Film> films = new ArrayList<>();
+
+        for (int i = 0; i < numberFilms ; i++) {
+            Film film = createFilm();
+            films.add(film);
+        }
 
     }
 
-    private static void showPosition(ArrayFilm[] films) {
+    private static int askNumberFilm() {
+
+        System.out.println("Quantes pel·lícules vols crear?: ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextInt();
+
+    }
+
+    private static void showPosition(Film[] films) {
         for (int i = 0; i < films.length ; i++) {
 
             System.out.println("Posició: " + i + " " + films[i].getTitleFilm());
@@ -24,13 +46,13 @@ public class Main {
 
     }
 
-    private static ArrayFilm createFilm(){
+    private static Film createFilm(){
 
         String title = askForTitle();
         String directorName = askForDirectorName();
         String category = askFOrCategory();
 
-        ArrayFilm film = new ArrayFilm(title,directorName,category);
+        Film film = new Film(title,directorName,category);
         System.out.println("Film creat: " + film.getTitleFilm() + " " + film.getDirectorName() + " "+ film.getCategoryFilm());
         return film;
 
